@@ -1,8 +1,10 @@
+@import '../../styles/variables';
+
 .sidebar {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: #494E6E;
+    background-color: $color_3; //#494E6E;
     width: 150px;
     border-bottom-right-radius: 2em;
     border-top-right-radius: 2em;
