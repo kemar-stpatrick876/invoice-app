@@ -1,6 +1,9 @@
 @import "../../styles//variables";
 
 .formPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   width: 0;
   position: fixed;
@@ -10,7 +13,7 @@
   background-color: #ffffff;
   overflow-x: hidden;
   transition: 0.5s;
-  padding: 5em 0 0 5em;
+  padding: 5em 0 2em 5em;
   border-bottom-right-radius: 2em;
   border-top-right-radius: 2em;
   transition: width 500ms ease-in-out;
@@ -37,12 +40,12 @@
     margin-top: 12px;
 }
 
-.formFooter {
+.formActions {
     display: flex;
     justify-content: space-between;
 }
 
-.formFooterSaveActions {
+.formActionsSave {
     display: flex;
     justify-content: space-between; 
 }

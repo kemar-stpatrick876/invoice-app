@@ -1,11 +1,12 @@
 import React from "react";
+import { ThemeContext } from "../ThemeContext/theme-context";
 import styles from "./input-field.module.scss";
 
 type Props = {
   id: string;
   label: string;
   className?: string;
-  value: string;
+  value: string | undefined;
   placeholder?: string;
   onChange?: (value: string) => void;
 };
@@ -31,7 +32,8 @@ export default class InputField extends React.PureComponent {
    }
 
   render() {
-    const { value, id, label, placeholder } = this.props;
+    const {theme} = this.context;
+    const { value = '', id, label, placeholder } = this.props;
     return (
       <div className={this.fieldClassNames}>
         <div className={styles.controlText}>
@@ -42,7 +44,7 @@ export default class InputField extends React.PureComponent {
         </div>
         <input
           id={id}
-          className={styles.inputField}
+          className={`${styles.inputField} ${styles['inputField--'+ theme]}`}
           placeholder={placeholder}
           type="text"
           value={value}
@@ -52,3 +54,5 @@ export default class InputField extends React.PureComponent {
     );
   }
 }
+
+InputField.contextType = ThemeContext;

@@ -30,6 +30,11 @@
         padding: 12px;
         font-weight: bold;
         border-radius: 5px;
+        &--dark {
+            background-color: #1E2139;
+            border: none;
+            color: #ffffff;
+        }
         // width: 152px;
 
     }
