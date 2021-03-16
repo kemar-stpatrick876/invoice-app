@@ -1,0 +1,25 @@
+.invoiceList {
+    padding: 2em 8em;
+    height: 100%;
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        &__left {
+            display: flex;
+            flex-direction: column;
+        }
+        &__right {
+            display: flex;
+            align-items: center;
+        }
+    }
+}
+
+.noInvoice {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}

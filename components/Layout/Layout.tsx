@@ -17,7 +17,7 @@ const Layout = ({ children }: Props) => (
     </Head>
     <div className={scss.container}>
       <SideBar></SideBar>
-      <div className="main">{children}</div>
+      <div id="main" className={scss.main}>{children}</div>
     </div>
   </div>
 );

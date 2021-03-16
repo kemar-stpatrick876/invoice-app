@@ -1,0 +1,51 @@
+@import '../../styles/variables';
+
+.btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 150px;
+    height: 48px;
+    border-radius: 24px;
+    background-color: $color_1;
+    border: none;
+    font-family: 'Spartan', sans-serif;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: -0.25;
+    color: #ffffff;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 500ms ease;
+    &:hover {
+        background-color: $color_2;
+    }
+    &.btn_v1 {
+        i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+        }
+    }
+    &.btn_v3 {
+        width: 73px !important;
+        &--light {
+            background-color: #F9FAFE;
+            color: $color_7;
+            &:hover {
+                background-color: $color_5;
+            }
+        }
+        &--dark {
+            background-color: $color_4;
+            &:hover {
+                color: #ffffff i !important;
+            }
+        }
+    }
+}

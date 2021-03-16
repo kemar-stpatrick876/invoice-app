@@ -1,19 +1,19 @@
 import React from "react";
-import scss from "./SideBar.module.scss";
+import styles from "./SideBar.module.scss";
 
 type Props = {};
 
 const SideBar = ({}: Props) => (
-  <div className={scss.sidebar}>
-    <div className={scss.sidebar__logo}>
+  <div className={styles.sidebar}>
+    <div className={styles.sidebar__logo}>
       <img src="icons/logo.svg" alt="logo"/>
     </div>
-    <div className={scss.sidebar__footer}>
+    <div className={styles.sidebar__footer}>
       <button>
         <img src="icons/icon-sun.svg" alt="sun"/>
       </button>
       <button>
-        <img className={scss.avatar} src="icons/image-avatar.jpg" alt="avatar"/>
+        <img className={styles.avatar} src="icons/image-avatar.jpg" alt="avatar"/>
       </button>
     </div>
   </div>

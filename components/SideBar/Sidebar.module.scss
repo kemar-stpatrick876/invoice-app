@@ -5,10 +5,11 @@
     flex-direction: column;
     justify-content: space-between;
     background-color: $color_3; //#494E6E;
-    width: 150px;
+    width: 100px;
     border-bottom-right-radius: 2em;
     border-top-right-radius: 2em;
     overflow: hidden;
+    z-index: 3;
     &__logo {
 
         height: 100px;
