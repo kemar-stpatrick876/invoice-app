@@ -1,15 +1,46 @@
+@import "../../styles//variables";
+
 .formPanel {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #ffffff;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-    border-bottom-right-radius: 2em;
-    border-top-right-radius: 2em;
-    transition: width 500ms ease-in-out;
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #ffffff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding: 5em 0 0 5em;
+  border-bottom-right-radius: 2em;
+  border-top-right-radius: 2em;
+  transition: width 500ms ease-in-out;
+  fieldset {
+      border: none;
+  }
 }
+
+.groupLabel {
+  color: $color_1;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  letter-spacing: -0.25px;
+  margin-bottom: 24px;
+}
+
+.addressL2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+}
+
+.formFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.formFooterSaveActions {
+    display: flex;
+    justify-content: space-between; 
+}
+

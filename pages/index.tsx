@@ -9,16 +9,15 @@ export default function Home() {
   const openNav = () => {
     const formPanel = window.document.getElementById("formPanel");
     const main = window.document.getElementById("main");
-    console.log('formPanel ', formPanel)
+    const panelWidth = "720px";
     if (typeof window === 'undefined') {
       return;
     }
-    console.log('open nav')
     if (formPanel) {
-      formPanel.style.width = "500px";
+      formPanel.style.width = panelWidth;
     }
     if (main) {
-      main.style.marginLeft = "500px";
+      main.style.marginLeft = panelWidth;
     }
   }
   

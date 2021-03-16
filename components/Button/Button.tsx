@@ -11,7 +11,7 @@ export enum btnVariant {
   btn_v5 = "btn_v5",
 }
 type ButtonProps = {
-  onClick?: Function;
+  onClick?: any;
   variant: btnVariant;
   className?: string;
   label: string;

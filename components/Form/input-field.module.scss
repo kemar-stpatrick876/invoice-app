@@ -1,0 +1,66 @@
+@import '../../styles/variables';
+
+.inputWrapper {
+    display: flex;
+    flex-direction: column;
+    .controlText {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        .fieldLabel {
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: -0.25;
+            color: $color_7;
+
+        }
+        .fieldError {
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 15px;
+            letter-spacing: -0.25;
+            color: $color_9;
+        }
+    }
+    .inputField {
+        border: 1px solid $color_5;
+        color: $color_8;
+        min-height: 48px;
+        padding: 12px;
+        font-weight: bold;
+        border-radius: 5px;
+        // width: 152px;
+
+    }
+}
+
+.inputWrapper--dark {
+
+    .controlText {
+        .fieldLabel {
+
+        }
+        .fieldError {
+
+        }
+    }
+    .inputField {
+        
+    }
+}
+
+.inputWrapper--light {
+
+    .controlText {
+        .fieldLabel {
+           
+        }
+        .fieldError {
+
+        }
+    }
+    .inputField {
+        
+    }
+}
