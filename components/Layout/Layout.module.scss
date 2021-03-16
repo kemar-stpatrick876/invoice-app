@@ -3,8 +3,17 @@
 .container {
   display: flex;
   min-height: 100vh;
+  &--dark {
+    background-color: #141625;
+  }
   .main {
     width: 100%;
-    background-color: $color_11;
+    &--light {
+      background-color: $color_11;
+    }
+    &--dark {
+      background-color: #141625;
+      color: #ffffff;
+    }
   }
 }

@@ -21,6 +21,7 @@
     &:hover {
         background-color: $color_2;
     }
+ 
     &.btn_v1 {
         i {
             display: flex;
@@ -31,11 +32,12 @@
             width: 32px;
             border-radius: 50%;
         }
+        
     }
     &.btn_v3 {
         // width: 73px !important;
         &--light {
-            background-color: #F9FAFE;
+            background-color: #373B53;
             color: $color_7;
             &:hover {
                 background-color: $color_5;

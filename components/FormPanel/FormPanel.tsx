@@ -1,6 +1,7 @@
 import React from "react";
 import Button, { btnVariant } from "../Button/Button";
 import InputField from "../Form/InputField";
+import { ThemeContext } from "../ThemeContext/theme-context";
 import styles from "./form-panel.module.scss";
 
 type Props = {};
@@ -8,8 +9,9 @@ type Props = {};
 class FormPanel extends React.Component {
   onDiscard() {}
   render() {
+    const {theme} = this.context;
     return (
-      <div id="formPanel" className={styles.formPanel}>
+      <div id="formPanel" className={`${styles.formPanel} ${styles[theme]}`}>
         <form>
           <fieldset>
             <label className={styles.groupLabel}>Bill From</label>
@@ -50,4 +52,5 @@ class FormPanel extends React.Component {
   }
 }
 
+FormPanel.contextType = ThemeContext;
 export default FormPanel;

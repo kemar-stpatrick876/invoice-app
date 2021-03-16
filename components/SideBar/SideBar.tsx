@@ -1,7 +1,9 @@
 import React from "react";
+import ThemedButton from "../ThemeContext/ThemeButton";
 import styles from "./SideBar.module.scss";
 
-type Props = {};
+type Props = {
+};
 
 const SideBar = ({}: Props) => (
   <div className={styles.sidebar}>
@@ -9,9 +11,7 @@ const SideBar = ({}: Props) => (
       <img src="icons/logo.svg" alt="logo"/>
     </div>
     <div className={styles.sidebar__footer}>
-      <button>
-        <img src="icons/icon-sun.svg" alt="sun"/>
-      </button>
+      <ThemedButton />
       <button>
         <img className={styles.avatar} src="icons/image-avatar.jpg" alt="avatar"/>
       </button>

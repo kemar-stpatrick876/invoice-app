@@ -1,3 +1,4 @@
+import { ThemeContext, themes } from "../ThemeContext/theme-context";
 import styles from "./Button.module.scss";
 
 export enum btnSizes {
@@ -19,19 +20,30 @@ type ButtonProps = {
   disabled?: boolean;
 };
 
-const Button = ({ disabled, label, variant, onClick }: ButtonProps) => (
-  <button
-    className={`${styles.btn} ${styles[variant]} ${styles[variant + '--dark']}`}
-    disabled={disabled}
-    onClick={onClick}
-  >
-    {variant === btnVariant.btn_v1 && (
-      <i>
-        <img src="icons/icon-plus.svg" alt="plus" />
-      </i>
-    )}
-    <span className={styles.btn__label}>{label}</span>
-  </button>
-);
+const Button = ({ disabled, label, variant, onClick }: ButtonProps) => {
+  const activeClassnames = (theme: themes) => {
+    const names = [styles.btn, styles[variant], styles[variant + '--' + theme]];
+    return names.join(' ');
+  }
+
+  return (
+    <ThemeContext.Consumer>
+      {({ theme }) => (
+        <button
+          className={activeClassnames(theme)}
+          disabled={disabled}
+          onClick={onClick}
+        >
+          {variant === btnVariant.btn_v1 && (
+            <i>
+              <img src="icons/icon-plus.svg" alt="plus" />
+            </i>
+          )}
+          <span className={styles.btn__label}>{label}</span>
+        </button>
+      )}
+    </ThemeContext.Consumer>
+  );
+}
 
 export default Button;
