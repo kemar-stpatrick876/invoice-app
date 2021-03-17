@@ -1,0 +1,52 @@
+.invoiceCard {
+    height: 72px;
+    background-color: #FFFFFF;
+    margin: 12px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    font-size: 14px;
+    &__id {
+        font-weight: bold;
+    }
+    &__paymentDue {
+        color: #7E88C3;
+        span {
+            color: #888EB0;
+        }        
+    }
+    &__clientName {
+        color: #888EB0;
+    }
+    &__total {
+        color: #0C0E16;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    &__status {
+        .badge {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            display: block;
+            margin-right: 12px;
+        }
+        &.paid {
+            color: #33D69F;
+        }
+        &.pending {
+            color: #FF8F00;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            .badge {
+                background-color: #FF8F00;
+            }
+        }
+        &.draft {
+            color: #373B53;
+        }
+    }
+
+}

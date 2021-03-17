@@ -1,3 +1,18 @@
+import {  Option } from "react-dropdown";
+
+export const PAYMENT_TERM_OPTIONS = [
+    { value: '1', label: 'Net 1 Days' },
+    { value: '7', label: 'Net 7 Days' },
+    { value: '14', label: 'Net 14 Days' },
+    { value: '30', label: 'Net 30 Days' },
+
+  ] as Option[];
+export enum invoiceStatus {
+    pending = 'pending',
+    draft = 'draft',
+    paid = 'paid'
+}
+
 interface IAddress {
   street: string;
   city: string;
@@ -5,31 +20,46 @@ interface IAddress {
   country: string;
 }
 
-interface IClient {
-    name: string;
-    email: string;
-    address: IAddress;
-  }
-
 interface IInvoice {
-  billFrom: IAddress;
-  client: IClient;
+  id?: string;
+  clientName: string;
+  clientEmail: string;
+  senderAddress: IAddress;
+  clientAddress: IAddress;
+  createdAt: string;
+  paymentDue: string;
+  paymentTerm: string;
+  status: invoiceStatus;
+  total: number;
+
 }
 export class Invoice implements IInvoice {
-  billFrom: IAddress = {} as IAddress;
-  client: IClient = {address: {}} as IClient;
+  id!: string;
+  clientName!: string;
+  clientEmail!: string;
+  senderAddress: IAddress = {} as IAddress;
+  clientAddress: IAddress = {} as IAddress;
+  createdAt!: string;
+  paymentDue!: string;
+  status: invoiceStatus = invoiceStatus.pending;
+  total: number = 1200.0;
+  paymentTerm: string;
 
   constructor(invoice?: IInvoice) {
-    this.billFrom.street = invoice?.billFrom.street || "";
-    this.billFrom.city = invoice?.billFrom.city || "";
-    this.billFrom.zip = invoice?.billFrom.zip || "";
-    this.billFrom.country = invoice?.billFrom.country || "";
+    this.senderAddress.street = invoice?.senderAddress.street || "";
+    this.senderAddress.city = invoice?.senderAddress.city || "";
+    this.senderAddress.zip = invoice?.senderAddress.zip || "";
+    this.senderAddress.country = invoice?.senderAddress.country || "";
 
-    this.client.name = invoice?.client.name || "";
-    this.client.email = invoice?.client.email || "";
-    this.client.address.street = invoice?.client.address.street || "";
-    this.client.address.city = invoice?.client.address.city || "";
-    this.client.address.zip = invoice?.client.address.zip || "";
-    this.client.address.country = invoice?.client.address.country || "";
+    this.clientName = invoice?.clientName || "";
+    this.clientEmail = invoice?.clientEmail|| "";
+    this.clientAddress.street = invoice?.clientAddress.street || "";
+    this.clientAddress.city = invoice?.clientAddress.city || "";
+    this.clientAddress.zip = invoice?.clientAddress.zip || "";
+    this.clientAddress.country = invoice?.clientAddress.country || "";
+
+    this.paymentTerm = invoice?.paymentTerm as string;
   }
+    
+   
 }

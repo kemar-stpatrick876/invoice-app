@@ -1,0 +1,28 @@
+@import './_variables';
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Spartan', sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+.Dropdown-option {
+  font-family: 'Spartan', sans-serif;
+  border-top: 1px solid #DFE3FA;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 24px !important;
+  &.is-selected {
+    color: #7C5DFA !important;
+  }
+}

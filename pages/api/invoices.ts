@@ -14,14 +14,15 @@ export default async function handler(
   const { method, body } = req;
   switch (method) {
     case "POST": {
-    const { billFrom , client: {name, email, address}} = body as Invoice;
+    const { senderAddress, clientName, clientEmail, clientAddress, paymentTerm } = body as Invoice;
 
       const { data, error } = await supabase.from("invoices").insert([
         {
-          bill_from: billFrom,
-          client_name: name,
-          client_email: email,
-          client_address: address
+          bill_from: senderAddress,
+          client_name: clientName,
+          client_email: clientEmail,
+          client_address: clientAddress,
+          payment_term: paymentTerm
         },
       ]);
       if (error) {
@@ -34,8 +35,20 @@ export default async function handler(
 
     default: {
       const { data = [] } = await supabase.from<any>("invoices").select();
+      const invoices = data?.map((d: any) => {
+          const invoice: Invoice = new Invoice();
+          invoice.id = d.id;
+          invoice.createdAt = d.created_at;
+          invoice.senderAddress = d.bill_from;
+          invoice.clientName = d.client_name;
+          invoice.clientEmail = d.clientEmail;
+          invoice.clientAddress = d.client_address;
+          invoice.paymentDue = d.payment_due;
+          invoice.paymentTerm = d.payment_term;
 
-      res.status(200).json(data);
+          return invoice;
+      })
+      res.status(200).json(invoices as Invoice[]);
       break;
     }
   }

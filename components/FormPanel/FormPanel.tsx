@@ -1,14 +1,16 @@
 import React from "react";
-import { Invoice } from "../../pages/invoice.model";
+import { Invoice, PAYMENT_TERM_OPTIONS } from "../../pages/invoice.model";
 import Button, { btnVariant } from "../Button/Button";
 import InputField from "../Form/InputField";
 import { ThemeContext } from "../ThemeContext/theme-context";
 import styles from "./form-panel.module.scss";
 import set from "lodash/set";
-import { mutate } from "swr";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
 
 type Props = {
   invoice?: Invoice;
+  closeFormPanel: Function;
 };
 
 type State = {
@@ -22,12 +24,14 @@ class FormPanel extends React.Component<Props, State> {
       invoice: props.invoice || new Invoice(),
     };
     this.onSaveAndSend = this.onSaveAndSend.bind(this);
+    this.onSelectPaymentTerm = this.onSelectPaymentTerm.bind(this);
   }
 
   onDiscard() {}
 
   async onSaveAndSend() {
     const { invoice } = this.state;
+    const {closeFormPanel} = this.props;
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -37,6 +41,7 @@ class FormPanel extends React.Component<Props, State> {
       .then((response) => response.json())
       .then((data) => {
         console.log("data ", data);
+        closeFormPanel();
       });
   }
 
@@ -44,6 +49,10 @@ class FormPanel extends React.Component<Props, State> {
     const { invoice } = this.state;
     set(invoice as Invoice, path, value);
     this.setState({ invoice });
+  }
+  onSelectPaymentTerm(e: any) {
+    const {value} = e;
+    this.handleFieldChange('paymentTerm', value)
   }
 
   render() {
@@ -57,36 +66,36 @@ class FormPanel extends React.Component<Props, State> {
             <InputField
               label="Street Address"
               id="streetAddress"
-              value={invoice?.billFrom?.street}
+              value={invoice?.senderAddress?.street}
               onChange={(value: string) =>
-                this.handleFieldChange("billFrom.street", value)
+                this.handleFieldChange("senderAddress.street", value)
               }
-            ></InputField>
+            />
             <div className={styles.addressL2}>
               <InputField
                 label="City"
                 id="city"
-                value={invoice?.billFrom?.city}
+                value={invoice?.senderAddress?.city}
                 onChange={(value: string) =>
-                  this.handleFieldChange("billFrom.city", value)
+                  this.handleFieldChange("senderAddress.city", value)
                 }
-              ></InputField>
+              />
               <InputField
                 label="zip"
                 id="zip"
-                value={invoice?.billFrom?.zip}
+                value={invoice?.senderAddress?.zip}
                 onChange={(value: string) =>
-                  this.handleFieldChange("billFrom.zip", value)
+                  this.handleFieldChange("senderAddress.zip", value)
                 }
-              ></InputField>
+              />
               <InputField
                 label="Country"
                 id="country"
-                value={invoice?.billFrom?.country}
+                value={invoice?.senderAddress?.country}
                 onChange={(value: string) =>
-                  this.handleFieldChange("billFrom.country", value)
+                  this.handleFieldChange("senderAddress.country", value)
                 }
-              ></InputField>
+              />
             </div>
           </fieldset>
           <fieldset>
@@ -94,52 +103,70 @@ class FormPanel extends React.Component<Props, State> {
             <InputField
               label="Client's Name"
               id="clientName"
-              value={invoice?.client?.name}
+              value={invoice?.clientName}
               onChange={(value: string) =>
-                this.handleFieldChange("client.name", value)
+                this.handleFieldChange("clientName", value)
               }
-            ></InputField>
-             <InputField
+            />
+            <InputField
               label="Client's Email"
               id="clientEmail"
-              value={invoice?.client?.email}
+              value={invoice?.clientEmail}
               onChange={(value: string) =>
-                this.handleFieldChange("client.email", value)
+                this.handleFieldChange("clientEmail", value)
               }
-            ></InputField>
-              <InputField
+            />
+            <InputField
               label="Street Address"
               id="clientStreetAddress"
-              value={invoice?.client?.address.street}
+              value={invoice?.clientAddress?.street}
               onChange={(value: string) =>
-                this.handleFieldChange("client.address.street", value)
+                this.handleFieldChange("clientAddress.street", value)
               }
-            ></InputField>
-               <div className={styles.addressL2}>
+            />
+            <div className={styles.addressL2}>
               <InputField
                 label="City"
                 id="clientCity"
-                value={invoice?.client?.address?.city}
+                value={invoice?.clientAddress?.city}
                 onChange={(value: string) =>
-                  this.handleFieldChange("client.address.city", value)
+                  this.handleFieldChange("clientAddress.city", value)
                 }
-              ></InputField>
+              />
               <InputField
                 label="zip"
                 id="clientZip"
-                value={invoice?.client?.address?.zip}
+                value={invoice?.clientAddress?.zip}
                 onChange={(value: string) =>
-                  this.handleFieldChange("client.address.zip", value)
+                  this.handleFieldChange("clientAddress.zip", value)
                 }
-              ></InputField>
+              />
               <InputField
                 label="Country"
                 id="clientCountry"
-                value={invoice?.client?.address?.country}
+                value={invoice?.clientAddress?.country}
                 onChange={(value: string) =>
-                  this.handleFieldChange("client.address.country", value)
+                  this.handleFieldChange("clientAddress.country", value)
                 }
-              ></InputField>
+              />
+            </div>
+            <div className={styles.addressL3}>
+              <InputField label="Invoice Date" id="clientsZip" value={""} />
+              <div className={styles.paymentTermField}>
+                <div className={styles.controlText}>
+                  <label className={styles.fieldLabel}>Payment Terms</label>
+                  <span className={styles.fieldError}>Can't be empty.</span>
+                </div>
+
+                <Dropdown
+                  className={styles.paymentTermDropdown}
+                  controlClassName={styles.paymentTermDropdown__control}
+                  menuClassName={styles.paymentTermDropdown__menu}
+                  options={PAYMENT_TERM_OPTIONS}
+                  onChange={this.onSelectPaymentTerm}
+                  placeholder="Select an option"
+                />
+              </div>
             </div>
           </fieldset>
         </form>
