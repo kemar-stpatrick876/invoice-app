@@ -9,9 +9,9 @@ class ThemedButton extends React.Component {
         {({ theme, toggleTheme }) => (
           <button onClick={toggleTheme}>
             {theme === themes.dark ? (
-              <img src="icons/icon-sun.svg" alt="sun" />
+              <img src="/icons/icon-sun.svg" alt="sun" />
             ) : (
-              <img src="icons/icon-moon.svg" alt="moon" />
+              <img src="/icons/icon-moon.svg" alt="moon" />
             )}
           </button>
         )}

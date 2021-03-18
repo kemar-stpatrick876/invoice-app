@@ -1,25 +1,17 @@
 import React from "react";
-import Layout from "../components/Layout/Layout";
-import InvoiceList from "./InvoiceList/InvoiceList.tsx";
 import FormPanel from "../components/FormPanel/FormPanel";
-import { ThemeContext, themes } from "../components/ThemeContext/theme-context";
-import { mutate } from 'swr'
+import { mutate } from "swr";
+import InvoiceList from "./InvoiceList/InvoiceList";
 
 interface IState {
-  theme: themes;
-  toggleTheme: () => void;
   invoiceKeyList: number;
-
 }
 class Home extends React.Component<{}, IState> {
   constructor(props: any) {
     super(props);
-    this.toggleTheme = this.toggleTheme.bind(this);
     this.closeFormPanel = this.closeFormPanel.bind(this);
     this.state = {
-      theme: themes.light,
-      toggleTheme: this.toggleTheme,
-      invoiceKeyList: 7
+      invoiceKeyList: 7,
     };
   }
 
@@ -47,23 +39,20 @@ class Home extends React.Component<{}, IState> {
     if (main) {
       main.style.marginLeft = "0";
     }
-    this.setState({invoiceKeyList: this.state.invoiceKeyList * 87})
-  }
-  toggleTheme() {
-    this.setState((state) => ({
-      theme: state.theme === themes.dark ? themes.light : themes.dark,
-    }));
+    this.setState({ invoiceKeyList: this.state.invoiceKeyList * 87 });
     mutate("/api/invoices");
   }
+ 
 
   render() {
     return (
-      <ThemeContext.Provider value={this.state}>
-        <Layout>
-          <FormPanel closeFormPanel={this.closeFormPanel}></FormPanel>
-          <InvoiceList openFormPanel={this.openFormPanel} key={this.state.invoiceKeyList}></InvoiceList>
-        </Layout>
-      </ThemeContext.Provider>
+      <div>
+        <FormPanel closeFormPanel={this.closeFormPanel}></FormPanel>
+        <InvoiceList
+          openFormPanel={this.openFormPanel}
+          key={this.state.invoiceKeyList}
+        ></InvoiceList>
+      </div>
     );
   }
 }
